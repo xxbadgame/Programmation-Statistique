@@ -1,4 +1,4 @@
-# Brut vers Net avant impôt pour les non-cadres uniquement
+# 2.1
 
 BrutToNet1 <- function(SalaireBrut){
   if (is.numeric(SalaireBrut)){
@@ -35,21 +35,20 @@ BrutToNet2 <- function(SalaireBrut, StatutContrat){
 
 
 BrutToNet3 <- function(SalaireBrut, StatutContrat, Source = 7.5, tempsTravaille = 100){
+  
   if (0<tempsTravaille & tempsTravaille<=100 & 0<Source & Source<=100){
     
       if (is.numeric(SalaireBrut)){
         
-        SalaireMoinsSoucreTT <- SalaireBrut*(1-Source/100)*(tempsTravaille/100) # Salaire net avant impot
+        SalaireMoinsSourceTT <- SalaireBrut*(1-Source/100)*(tempsTravaille/100) # Salaire net avant impot
         
         if (StatutContrat == "cadre"){
           
-          SalaireCadre = SalaireMoinsSoucre*(1-0.25)
-          print(SalaireCadre) # Net après impot cadre
+          Salaire = SalaireMoinsSourceTT*(1-0.25) # Net après impot cadre
           
         }else if(StatutContrat == "non-cadres"){
           
-          SalaireNonCadre = SalaireMoinsSoucre*(1-0.22)
-          print(SalaireNonCadre) # Net après impot non-cadre
+          Salaire = SalaireMoinsSoucreTT*(1-0.22) # Net après impot non-cadre
         }
         
       }else{
@@ -59,7 +58,32 @@ BrutToNet3 <- function(SalaireBrut, StatutContrat, Source = 7.5, tempsTravaille 
     }else{
         print("ERROR : rate and time must be in range(0,100)")
     }
+  return(c(SalaireBrut,Salaire))
 }
 
 BrutToNet3(2000,"cadre",10,90)
+
+
+# 2.2
+
+netAnnuelToImpot <- (salaireNetAnnuel){
+  if (salaireNetAnnuel = 10777){
+    return("Vous n'etes pas imposable")
+    
+  }else if(10778<salaireNetAnnuel<27478){
+    return(SalaireNetAnnuel*(1-(11/100)))
+    
+  }else if(27479<salaireNetAnnuel<78570){
+    return(SalaireNetAnnuel*(1-(30/100)))
+  }
+  
+  }else if(78571<salaireNetAnnuel<168994){
+    return(SalaireNetAnnuel*(1-(41/100)))
+    
+  }else{
+    return(SalaireNetAnnuel*(1-(45/100)))
+  }
+}
+
+
 
