@@ -66,24 +66,25 @@ BrutToNet3(2000,"cadre",10,90)
 
 # 2.2
 
-netAnnuelToImpot <- (salaireNetAnnuel){
-  if (salaireNetAnnuel = 10777){
+netAnnuelToImpot <- function(salaireNetAnnuel){
+  if (salaireNetAnnuel <= 10777){
     return("Vous n'etes pas imposable")
     
-  }else if(10778<salaireNetAnnuel<27478){
-    return(SalaireNetAnnuel*(1-(11/100)))
+  }else if(10778<salaireNetAnnuel & salaireNetAnnuel<27478){
+    return(salaireNetAnnuel*(1-(11/100)))
     
-  }else if(27479<salaireNetAnnuel<78570){
-    return(SalaireNetAnnuel*(1-(30/100)))
-  }
+  }else if(27479<salaireNetAnnuel & salaireNetAnnuel<78570){
+    return(salaireNetAnnuel*(1-(30/100)))
   
-  }else if(78571<salaireNetAnnuel<168994){
-    return(SalaireNetAnnuel*(1-(41/100)))
+  }else if(78571<salaireNetAnnuel & salaireNetAnnuel<168994){
+    return(salaireNetAnnuel*(1-(41/100)))
     
   }else{
-    return(SalaireNetAnnuel*(1-(45/100)))
+    return(salaireNetAnnuel*(1-(45/100)))
   }
 }
+
+netAnnuelToImpot(20000)
 
 
 
