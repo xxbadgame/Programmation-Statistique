@@ -168,23 +168,32 @@ JustePrix()
 
 PFC <- function(nb_partie){
   cat("Vous avez choisi de jouer", nb_partie,"parties")
+  comptAI <- 0
+  comptUser <- 0
   
   while (nb_partie > 0) {
+    
     CoupUser <- readline(prompt = "Pierre, Feuille ou Ciseaux ? ")
     ai_choice <- sample(x = c("Pierre","Feuille","Ciseaux"),size = 1)
     
     if (CoupUser == "Pierre" & ai_choice == "Ciseaux"){
       print(c(ai_choice, "USER à Gagner"))
+      comptUser = comptUser + 1
     }else if (CoupUser == "Pierre" & ai_choice == "Feuille"){
       print(c(ai_choice, "IA à Gagner"))
+      comptAI = comptAI + 1
     }else if (CoupUser == "Feuille" & ai_choice == "Pierre"){
       print(c(ai_choice, "USER à Gagner"))
+      comptUser = comptUser + 1
     }else if (CoupUser == "Feuille" & ai_choice == "Ciseaux"){
       print(c(ai_choice, "IA à Gagner"))
+      comptAI = comptAI + 1
     }else if (CoupUser == "Ciseaux" & ai_choice == "Feuille"){
       print(c(ai_choice, "USER à Gagner"))
+      comptUser = comptUser + 1
     }else if (CoupUser == "Ciseaux" & ai_choice == "Pierre"){
       print(c(ai_choice, "IA à Gagner"))
+      comptAI = comptAI + 1
     }else if (CoupUser == ai_choice){
       print(c(ai_choice, "Match Nul"))
     }else{
@@ -192,9 +201,16 @@ PFC <- function(nb_partie){
     }
     
     nb_partie = nb_partie - 1
-    cat("il reste ", nb_partie, "parties")
+    cat("il reste ", nb_partie, "parties\n")
+    cat("le score est de",comptAI,"pour l'IA et",comptUser,"pour l'utilisateur.\n" )
     
   }
+  if (comptAI < comptUser){
+    cat("l'Utiliseur à gagner")
+  }else{
+    cat("l'IA à gagner")
+  }
+  
   return(cat("\nAu revoir"))
 }
 
