@@ -114,8 +114,60 @@ netAnnuelToImpot <- function(SNA){
   
 }
 
+# Ex 2.3
 
-netAnnuelToImpot(500000)
+JustePrix <- function(){
+  ModeDif <- as.integer(readline(prompt = "Difficulté : Easy(1)/Medium(2)/Hard(3) : "))
+  NbTentatives <- 0
+  
+  Prix <- sample(x = 1:100,size = 1)
+  
+  print(Prix)
+  
+  EstimPrix <- 0
+  
+  if (ModeDif == 1){
+    
+    while(EstimPrix != Prix){
+      EstimPrix <- as.integer(readline(prompt = "Saisissez un prix : "))
+      NbTentatives = NbTentatives - 1
+      if (EstimPrix > Prix){
+        cat("Le prix est plus bas")
+      }else if (EstimPrix < Prix){
+        cat("Le prix est plus haut")
+      }else{
+        return(cat("bravo, vous avez trouvez le prix !", Prix, "euros"))
+      }
+    }
+    
+  }else if(ModeDif == 2){
+    NbTentatives = 20
+  }else if(ModeDif == 3){
+    NbTentatives = 10
+  }
+  
+  
+  while(EstimPrix != Prix & NbTentatives > 0){
+    EstimPrix <- as.integer(readline(prompt = "Saisissez un prix : "))
+    NbTentatives = NbTentatives - 1
+    
+    if (EstimPrix > Prix){
+      cat("Le prix est plus bas, plus que",NbTentatives, "Tentatives")
+    }else if (EstimPrix < Prix){
+      cat("Le prix est plus haut, plus que",NbTentatives, "Tentatives")
+    }else{
+      return(cat("bravo, vous avez trouvez le prix !", Prix, "euros"))
+    }
+  }
+  return(cat("\nDommage, vous n'avez plus d'essaie possible..."))
+}
+
+JustePrix()
+
+
+
+
+
 
 
 
