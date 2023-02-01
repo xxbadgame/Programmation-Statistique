@@ -164,6 +164,42 @@ JustePrix <- function(){
 
 JustePrix()
 
+# Ex 2.4
+
+PFC <- function(nb_partie){
+  cat("Vous avez choisi de jouer", nb_partie,"parties")
+  
+  while (nb_partie > 0) {
+    CoupUser <- readline(prompt = "Pierre, Feuille ou Ciseaux ? ")
+    ai_choice <- sample(x = c("Pierre","Feuille","Ciseaux"),size = 1)
+    
+    if (CoupUser == "Pierre" & ai_choice == "Ciseaux"){
+      print(c(ai_choice, "USER à Gagner"))
+    }else if (CoupUser == "Pierre" & ai_choice == "Feuille"){
+      print(c(ai_choice, "IA à Gagner"))
+    }else if (CoupUser == "Feuille" & ai_choice == "Pierre"){
+      print(c(ai_choice, "USER à Gagner"))
+    }else if (CoupUser == "Feuille" & ai_choice == "Ciseaux"){
+      print(c(ai_choice, "IA à Gagner"))
+    }else if (CoupUser == "Ciseaux" & ai_choice == "Feuille"){
+      print(c(ai_choice, "USER à Gagner"))
+    }else if (CoupUser == "Ciseaux" & ai_choice == "Pierre"){
+      print(c(ai_choice, "IA à Gagner"))
+    }else if (CoupUser == ai_choice){
+      print(c(ai_choice, "Match Nul"))
+    }else{
+      return("Error")
+    }
+    
+    nb_partie = nb_partie - 1
+    cat("il reste ", nb_partie, "parties")
+    
+  }
+  return(cat("\nAu revoir"))
+}
+
+PFC(3)
+
 
 
 
