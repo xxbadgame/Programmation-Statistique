@@ -66,25 +66,56 @@ BrutToNet3(2000,"cadre",10,90)
 
 # 2.2
 
-netAnnuelToImpot <- function(salaireNetAnnuel){
-  if (salaireNetAnnuel <= 10777){
-    return("Vous n'etes pas imposable")
-    
-  }else if(10778<salaireNetAnnuel & salaireNetAnnuel<27478){
-    return(salaireNetAnnuel*(1-(11/100)))
-    
-  }else if(27479<salaireNetAnnuel & salaireNetAnnuel<78570){
-    return(salaireNetAnnuel*(1-(30/100)))
+netAnnuelToImpot <- function(SNA){
+  impot = 0
   
-  }else if(78571<salaireNetAnnuel & salaireNetAnnuel<168994){
-    return(salaireNetAnnuel*(1-(41/100)))
-    
-  }else{
-    return(salaireNetAnnuel*(1-(45/100)))
+  tranche1 = 10777
+  tranche2 = 27478-10778
+  tranche3 = 78570-27479
+  tranche4 = 168994-78571
+  tranche5 = 168994
+  
+  # Tranche 1 
+  if (SNA <= tranche1){
+    return("Vous n'etes pas imposable")
   }
+  
+  SNA = SNA - tranche1
+  
+  # Tranche 2
+  if (SNA >= tranche2){
+    impot = impot + tranche2*(11/100)
+  }else{
+    impot = impot + (SNA - tranche1)*(11/100)
+    return(impot)
+  }
+  
+  # Tranche 3
+  if (SNA >= tranche3){
+     impot = impot + tranche3*(30/100)
+   }else{
+     impot = impot + (SNA - tranche2)*(30/100)
+     return(impot)
+   }
+   
+  # Tranche 4
+  if (SNA >= tranche4){
+     impot = impot + tranche4*(41/100)
+   }else{
+     impot = impot + (SNA - tranche3)*(41/100)
+     return(impot)
+   }
+   
+  # Tranche 5
+  if (SNA >= tranche5){
+    impot = impot + (SNA - tranche4)*(45/100)
+    return(impot)
+  }
+  
 }
 
-netAnnuelToImpot(20000)
+
+netAnnuelToImpot(500000)
 
 
 
