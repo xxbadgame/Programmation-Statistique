@@ -83,6 +83,30 @@ requete_41 = filtre[order(-filtre$attack),]
 requete_41
 dim(requete_41)
 
+requete_42 <- pokemon[pokemon$type %in% c("dragon","ghost","psychic","dark"),c("nom","type")]
+requete_42
+dim(requete_42)
+
+filtre <- pokemon[pokemon$type == "fire" & pokemon$attack > 100, c("nom","attack", "type")]
+requete_43 = filtre[order(-filtre$attack),]
+requete_43
+dim(requete_43)
 
 
+filtre <- pokemon[pokemon$speed > 100 & pokemon$speed < 150, c("nom", "speed")]
+requete_44 = filtre[order(-filtre$speed),]
+requete_44
+dim(requete_44)
 
+requete_45 <- pokemon[is.na(pokemon$height_m),]
+requete_45
+dim(requete_45)
+
+requete_46 <- pokemon[!is.na(pokemon$height_m) & !is.na(pokemon$weight_kg),]
+requete_46
+dim(requete_46)
+
+requete_47 <- pokemon[!is.na(pokemon$weight_kg) & pokemon$weight_kg > 250 , c("nom", "weight_kg")]
+requete_47
+
+## Exercise 5
