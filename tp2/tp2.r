@@ -110,3 +110,28 @@ requete_47 <- pokemon[!is.na(pokemon$weight_kg) & pokemon$weight_kg > 250 , c("n
 requete_47
 
 ## Exercise 5
+
+requete_50 <- aggregate(x = speed ~ generation, data = pokemon , FUN = mean)
+requete_50
+dim(requete_50)
+
+MoyTypeAttack <- aggregate(x = speed ~ type, data = pokemon , FUN = mean)
+filtre <- MoyTypeAttack[order(-MoyTypeAttack$speed),]
+requete_51 = filtre[1:3,]
+requete_51
+
+requete_52 <- aggregate(x = pokedex_number ~ type, data = pokemon, FUN = length)
+requete_52
+dim(requete_52)
+
+requete_53 <- aggregate(x = weight_kg ~ type, data = pokemon, FUN = median)
+requete_53
+dim(requete_53)
+
+requete_54 <- aggregate(x = pokedex_number ~ type + generation, data = pokemon, FUN = length)
+requete_54
+dim(requete_54)
+
+requete_55 <- aggregate(x = weight_kg + height_m + attack + defense + speed ~ type, data = pokemon , FUN = mean)
+requete_55
+dim(requete_55)
