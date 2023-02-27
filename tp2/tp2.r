@@ -11,7 +11,7 @@ AllTypes = pokemon$type
 
 # Conversion en factor
 
-factor(pokemon$generation)
+pokemon$generation = as.factor(pokemon$generation)
 factor(pokemon$is_legendary)
 factor(pokemon$type)
 
